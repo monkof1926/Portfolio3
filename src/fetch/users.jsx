@@ -18,7 +18,7 @@ async function GetUsers(){
 }
 async function GetUser({username}){
     try {
-        const res = await fetch(userURL);
+        const res = await fetch(userURL + "/GetUser");
         const json = await res.json(username);
         setUsers(json.username.results);
         setStatus("done");
