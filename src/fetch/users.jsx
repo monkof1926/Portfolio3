@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 
 let [users, setUsers] = useState([]);
-let [status, setStatus] = useState("idel");
+let [status, setStatus] = useState("idle");
 let userURL = "https://localhos7001/api/user/";
 
 async function GetUsers(){
@@ -12,7 +12,7 @@ async function GetUsers(){
         setUsers(json.results);
         setStatus("done");
     }catch(e){
-        setStatus("can't find user");
+        setStatus("404 can't find user");
     }
 
 }
@@ -23,7 +23,7 @@ async function GetUser({username}){
         setUsers(json.username.results);
         setStatus("done");
     }catch(e){
-        setStatus("Can't find user");
+        setStatus("404 can't find user");
     }
 }
 async function UpdateUser(username, password){
@@ -36,7 +36,7 @@ async function UpdateUser(username, password){
         setUsers(newUser);
         setStatus("done");
     }catch(e){
-        setStatus("Can't find user")
+        setStatus("404 can't find user")
     }
 }
 
@@ -49,7 +49,7 @@ async function DeleteUser(username, password){
             setStatus('User is delete'+ results);
         });
     }catch(e){
-        setStatus("can't find user")
+        setStatus("404 can't find user")
     }
 }
 
@@ -58,4 +58,4 @@ async function CreateUser(){
 }
 
 
-export default GetUsers;
+export{GetUsers, GetUser, UpdateUser, DeleteUser, CreateUser};
